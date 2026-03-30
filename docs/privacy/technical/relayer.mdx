@@ -42,6 +42,17 @@ The relayer consists of:
 - **Transaction storage** — stores encrypted accounts and notes, enabling fast state sync responses to clients without requiring full calldata reconstruction
 - **REST API** — the client interface for submitting transactions and querying pool state
 
+## Relayer Endpoints
+
+Each privacy pool has its own relayer instance:
+
+| Pool | Pool ID | Relayer URL |
+|------|---------|-------------|
+| WTLOS | 40001 | `https://dsw2020napxes.cloudfront.net/` |
+| USDC.e | 40002 | `https://d39zrx7k37xhn.cloudfront.net/` |
+
+All REST API paths below are relative to these base URLs.
+
 ## REST API
 
 Clients interact with the relayer via a REST API. Key endpoints:
@@ -53,6 +64,16 @@ Clients interact with the relayer via a REST API. Key endpoints:
 | `GET /info` | Pool state info (current root, leaf count, fee) |
 | `GET /fee` | Current relayer fee |
 | `GET /limits` | Current deposit/withdrawal limits |
+
+### Example
+
+```bash
+# Get WTLOS pool state
+curl https://dsw2020napxes.cloudfront.net/info
+
+# Get USDC.e relayer fee
+curl https://d39zrx7k37xhn.cloudfront.net/fee
+```
 
 ## Scalability Note
 
